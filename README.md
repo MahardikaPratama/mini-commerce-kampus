@@ -103,6 +103,12 @@
 <h1 style="text-align: center; color: #FF9800;">Attachments & Testing</h1>
 <ul style="font-size: 16px; line-height: 1.6;">
   <li><strong>Postman Collection:</strong> You can find the Postman collection within the repository. Import it into Postman to easily test all the REST APIs (Create Order, Pay, Cancel, etc.).</li>
+  <li><strong>Swagger API Docs:</strong> Explore and test APIs interactively via Swagger UI:
+    <ul>
+      <li>Catalog Service: <a href="http://localhost:8081/swagger-ui.html">http://localhost:8081/swagger-ui.html</a></li>
+      <li>Order Service: <a href="http://localhost:8082/swagger-ui.html">http://localhost:8082/swagger-ui.html</a></li>
+    </ul>
+  </li>
   <li><strong>PDM/DDL:</strong> The database schema design files are also provided for your reference.</li>
   <li><strong>Unit Tests:</strong> The project includes comprehensive unit tests for the core business logic (Service layer) using <strong>JUnit 5</strong> and <strong>Mockito</strong>.</li>
 </ul>
