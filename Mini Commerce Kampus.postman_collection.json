@@ -1,0 +1,1654 @@
+{
+    "info": {
+        "_postman_id": "16e7d63f-144b-406e-aa35-39d1e7b337b0",
+        "name": "Mini Commerce Kampus",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "42113647"
+    },
+    "item": [
+        {
+            "name": "00 Setup",
+            "item": [
+                {
+                    "name": "00.1 Create Product 1",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {\r",
+                                    "    pm.response.to.have.status(201);\r",
+                                    "});\r",
+                                    "\r",
+                                    "const response = pm.response.json();\r",
+                                    "\r",
+                                    "pm.environment.set(\"product1_id\", response.id);"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"sku\": \"MKN001\",\r\n    \"name\": \"Nasi Goreng\",\r\n    \"price\": 15000,\r\n    \"stock\": 10\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{catalog_url}}/api/products",
+                            "host": [
+                                "{{catalog_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "00.2 Create Product 2",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {\r",
+                                    "    pm.response.to.have.status(201);\r",
+                                    "});\r",
+                                    "\r",
+                                    "const response = pm.response.json();\r",
+                                    "\r",
+                                    "pm.environment.set(\"product2_id\", response.id);"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"sku\": \"MKN002\",\r\n    \"name\": \"Mie Goreng\",\r\n    \"price\": 12000,\r\n    \"stock\": 5\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{catalog_url}}/api/products",
+                            "host": [
+                                "{{catalog_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "00.3 Create Product 3",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "pm.test(\"Status code is 201\", function () {\r",
+                                    "    pm.response.to.have.status(201);\r",
+                                    "});\r",
+                                    "\r",
+                                    "const response = pm.response.json();\r",
+                                    "\r",
+                                    "pm.environment.set(\"product3_id\", response.id);"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        },
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [
+                                    ""
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"sku\": \"MKN003\",\r\n    \"name\": \"Es Teh\",\r\n    \"price\": 5000,\r\n    \"stock\": 20\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{catalog_url}}/api/products",
+                            "host": [
+                                "{{catalog_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "00.4 Get All Products",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "const products = pm.response.json();\r",
+                                    "\r",
+                                    "pm.test(\"At least 3 products exist\", function () {\r",
+                                    "    pm.expect(products.length).to.be.at.least(3);\r",
+                                    "});"
+                                ],
+                                "type": "text/javascript",
+                                "packages": {},
+                                "requests": {}
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{catalog_url}}/api/products",
+                            "host": [
+                                "{{catalog_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "products"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "01 Catalog Service",
+            "item": [
+                {
+                    "name": "01.1 Positive Tests",
+                    "item": [
+                        {
+                            "name": "A. Create Product",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 201 Created\", function () {\r",
+                                            "    pm.response.to.have.status(201);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const product = pm.response.json();\r",
+                                            "\r",
+                                            "pm.environment.set(\"new_product_id\", product.id);\r",
+                                            "\r",
+                                            "pm.test(\"Product ID is generated\", function () {\r",
+                                            "    pm.expect(product.id).to.not.be.null;\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"SKU matches request\", function () {\r",
+                                            "    pm.expect(product.sku).to.eql(\"MKN004\");\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"sku\": \"MKN004\",\r\n    \"name\": \"Ayam Geprek\",\r\n    \"price\": 18000,\r\n    \"stock\": 15\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "B. Get All Products",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const products = pm.response.json();\r",
+                                            "\r",
+                                            "pm.test(\"Response is array\", function () {\r",
+                                            "    pm.expect(products).to.be.an(\"array\");\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Contains at least one product\", function () {\r",
+                                            "    pm.expect(products.length).to.be.greaterThan(0);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "C. Get Product By ID",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const product = pm.response.json();\r",
+                                            "\r",
+                                            "pm.test(\"Correct product returned\", function () {\r",
+                                            "    pm.expect(product.id).to.eql(pm.environment.get(\"product1_id\"));\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "D. Update Stock",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const product = pm.response.json();\r",
+                                            "\r",
+                                            "pm.test(\"Stock updated\", function () {\r",
+                                            "    pm.expect(product.stock).to.eql(30);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"stock\": 30\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}/stock",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}",
+                                        "stock"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "E1. ACTIVE \u2192 INACTIVE",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Status becomes INACTIVE\", function () {\r",
+                                            "    pm.expect(pm.response.json().status).to.eql(\"INACTIVE\");\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"status\": \"INACTIVE\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}/status",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}",
+                                        "status"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "E2. INACTIVE \u2192 ACTIVE",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Status becomes ACTIVE\", function () {\r",
+                                            "    pm.expect(pm.response.json().status).to.eql(\"ACTIVE\");\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"status\": \"ACTIVE\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}/status",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}",
+                                        "status"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "01.2 Negative Tests",
+                    "item": [
+                        {
+                            "name": "A. Duplicate SKU",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"sku\": \"MKN001\",\r\n    \"name\": \"Duplicate SKU\",\r\n    \"price\": 10000,\r\n    \"stock\": 5\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "B. Invalid Price",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"sku\": \"ERR001\",\r\n    \"name\": \"Invalid Price\",\r\n    \"price\": 0,\r\n    \"stock\": 5\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "C. Negative Stock",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"sku\": \"ERR002\",\r\n    \"name\": \"Negative Stock\",\r\n    \"price\": 10000,\r\n    \"stock\": -1\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "D. Invalid Status Enum",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"status\": \"AVAILABLE\"\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}/status",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}",
+                                        "status"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "E. Product Not Found",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/00000000-0000-0000-0000-000000000000",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "00000000-0000-0000-0000-000000000000"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "F. Invalid UUID",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/abc",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "abc"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "02 Order Service",
+            "item": [
+                {
+                    "name": "02.1 Positive Tests",
+                    "item": [
+                        {
+                            "name": "Create Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 201 Created\", function () {\r",
+                                            "    pm.response.to.have.status(201);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const order = pm.response.json();\r",
+                                            "\r",
+                                            "pm.environment.set(\"order_id\", order.id);\r",
+                                            "\r",
+                                            "pm.test(\"Order ID generated\", function () {\r",
+                                            "    pm.expect(order.id).to.not.be.null;\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Order status is PENDING\", function () {\r",
+                                            "    pm.expect(order.status).to.eql(\"PENDING\");\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika Pratama\",\r\n    \"customerEmail\": \"mahardika@example.com\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"{{product2_id}}\",\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get All Orders",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const orders = pm.response.json();\r",
+                                            "\r",
+                                            "pm.test(\"Response is array\", function () {\r",
+                                            "    pm.expect(orders).to.be.an(\"array\");\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Contains at least one order\", function () {\r",
+                                            "    pm.expect(orders.length).to.be.greaterThan(0);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                            },
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get Order By ID",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "const order = pm.response.json();\r",
+                                            "\r",
+                                            "pm.test(\"Correct order returned\", function () {\r",
+                                            "    pm.expect(order.id).to.eql(pm.environment.get(\"order_id\"));\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{order_id}}",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{order_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Pay Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Order status is PAID\", function () {\r",
+                                            "    pm.expect(pm.response.json().status).to.eql(\"PAID\");\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{order_id}}/pay",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{order_id}}",
+                                        "pay"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create Order 2",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.environment.set(\"cancel_order_id\", pm.response.json().id);"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Banteng Santoso\",\r\n    \"customerEmail\": \"banteng@example.com\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"{{product2_id}}\",\r\n            \"quantity\": 3\r\n        }\r\n    ]\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Cancel Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 200 OK\", function () {\r",
+                                            "    pm.response.to.have.status(200);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Order status is CANCELLED\", function () {\r",
+                                            "    pm.expect(pm.response.json().status).to.eql(\"CANCELLED\");\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{cancel_order_id}}/cancel",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{cancel_order_id}}",
+                                        "cancel"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "02.2 Negative Tests",
+                    "item": [
+                        {
+                            "name": "Invalid Email",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Status code is 404 Not Found\", function () {\r",
+                                            "    pm.response.to.have.status(404);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika\",\r\n    \"customerEmail\": \"abc\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"{{product1_id}}\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}"
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Empty Items",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Status code is 404 Not Found\", function () {\r",
+                                            "    pm.response.to.have.status(404);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika\",\r\n    \"customerEmail\": \"mahardika@example.com\",\r\n    \"items\": []\r\n}"
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Quantity = 0",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Status code is 404 Not Found\", function () {\r",
+                                            "    pm.response.to.have.status(404);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika\",\r\n    \"customerEmail\": \"mahardika@example.com\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"{{product1_id}}\",\r\n            \"quantity\": 0\r\n        }\r\n    ]\r\n}"
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Product No Found",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {\r",
+                                            "    pm.response.to.have.status(400);\r",
+                                            "});\r",
+                                            "\r",
+                                            "pm.test(\"Status code is 404 Not Found\", function () {\r",
+                                            "    pm.response.to.have.status(404);\r",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika\",\r\n    \"customerEmail\": \"mahardika@example.com\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"00000000-0000-0000-0000-000000000000\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}"
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Order Inactive Product",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript"
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"customerName\": \"Tester\",\n    \"customerEmail\": \"test@example.com\",\n    \"items\": [\n        {\n            \"productId\": \"{{product1_id}}\",\n            \"quantity\": 1\n        }\n    ]\n}"
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Order Exceed Stock",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript"
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"customerName\": \"Tester\",\n    \"customerEmail\": \"test@example.com\",\n    \"items\": [\n        {\n            \"productId\": \"{{product1_id}}\",\n            \"quantity\": 99999\n        }\n    ]\n}"
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Pay a PAID Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript"
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{integration_order_id}}/pay",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{integration_order_id}}",
+                                        "pay"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Cancel a PAID Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript"
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{integration_order_id}}/cancel",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{integration_order_id}}",
+                                        "cancel"
+                                    ]
+                                }
+                            }
+                        },
+                        {
+                            "name": "Pay a CANCELLED Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.test(\"Status code is 400 Bad Request\", function () {",
+                                            "    pm.response.to.have.status(400);",
+                                            "});"
+                                        ],
+                                        "type": "text/javascript"
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{cancel_order_id}}/pay",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{cancel_order_id}}",
+                                        "pay"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "03 Integration Tests",
+            "item": [
+                {
+                    "name": "01. Create Order \u2192 Stock Reduced",
+                    "item": [
+                        {
+                            "name": "Get Product",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Create Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.environment.set(\r",
+                                            "    \"integration_order_id\",\r",
+                                            "    pm.response.json().id\r",
+                                            ");"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika Pratama\",\r\n    \"customerEmail\": \"mahardika@example.com\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"{{product1_id}}\",\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get Product",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "02 Pay Order \u2192 Status Changed",
+                    "item": [
+                        {
+                            "name": "Pay Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            ""
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{integration_order_id}}/pay",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{integration_order_id}}",
+                                        "pay"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get Order",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{integration_order_id}}",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{integration_order_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get Product",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                },
+                {
+                    "name": "03 Cancel Order \u2192 Stock Restored",
+                    "item": [
+                        {
+                            "name": "Create Order",
+                            "event": [
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "exec": [
+                                            "pm.environment.set(\r",
+                                            "    \"cancel_order_id\",\r",
+                                            "    pm.response.json().id\r",
+                                            ");"
+                                        ],
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "requests": {}
+                                    }
+                                }
+                            ],
+                            "request": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\r\n    \"customerName\": \"Mahardika Pratama\",\r\n    \"customerEmail\": \"mahardika@example.com\",\r\n    \"items\": [\r\n        {\r\n            \"productId\": \"{{product1_id}}\",\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Cancel Order",
+                            "request": {
+                                "method": "PATCH",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{order_url}}/api/orders/{{cancel_order_id}}/cancel",
+                                    "host": [
+                                        "{{order_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "orders",
+                                        "{{cancel_order_id}}",
+                                        "cancel"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        },
+                        {
+                            "name": "Get Product",
+                            "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{catalog_url}}/api/products/{{product1_id}}",
+                                    "host": [
+                                        "{{catalog_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "products",
+                                        "{{product1_id}}"
+                                    ]
+                                }
+                            },
+                            "response": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
