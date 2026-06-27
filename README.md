@@ -40,6 +40,7 @@
   <li><strong>Stock Management</strong>: Stock decreases dynamically when an order is created and returns to its original amount if the order is cancelled.</li>
   <li><strong>Database Isolation</strong>: Strict architectural rules ensuring no direct query or access from one service to another service's database.</li>
   <li><strong>Validation & Proper Error Handling</strong>: Features a `GlobalExceptionHandler` returning clean JSON errors (400 Bad Request/404 Not Found) without exposing the server stack trace.</li>
+  <li><strong>Unit Testing (JUnit 5 & Mockito)</strong>: Implemented unit tests for critical Service Layer business logic to ensure system reliability and correct stock calculations.</li>
   <li><strong>Complete Documentation</strong>: Includes a Postman Collection and PDM/DDL schemas to easily replicate the environment.</li>
 </ul> 
 
@@ -103,7 +104,17 @@
 <ul style="font-size: 16px; line-height: 1.6;">
   <li><strong>Postman Collection:</strong> You can find the Postman collection within the repository. Import it into Postman to easily test all the REST APIs (Create Order, Pay, Cancel, etc.).</li>
   <li><strong>PDM/DDL:</strong> The database schema design files are also provided for your reference.</li>
+  <li><strong>Unit Tests:</strong> The project includes comprehensive unit tests for the core business logic (Service layer) using <strong>JUnit 5</strong> and <strong>Mockito</strong>.</li>
 </ul>
+
+<p style="font-size: 16px;"><strong>Running Unit Tests:</strong></p>
+<pre><code># Run tests for Catalog Service
+cd catalog-service
+./mvnw test
+
+# Run tests for Order Service
+cd order-service
+./mvnw test</code></pre>
 
 <br>
 
